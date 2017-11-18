@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.teamrainbow.rainbowtrack.UIActivity"
+    tools:showIn="@layout/activity_ui">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/presence_online"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageView4"
+        android:text="User1" />
+
+    <TextView
+        android:id="@+id/textField_sectoreAvgSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textField_sectorTopSpeed"
+        android:layout_below="@+id/textField_sectorTopSpeed"
+        android:text="Sector Time:" />
+
+    <TextView
+        android:id="@+id/textField_LapTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lap Time:"
+        android:layout_below="@+id/textField_topSpeed"
+        android:layout_alignEnd="@+id/textField_topSpeed" />
+
+    <TextView
+        android:id="@+id/textField_topSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Speed:"
+        android:layout_below="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textField_sectorTopSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Speed:"
+        android:layout_below="@+id/textField_sectoreAvgSpeed"
+        android:layout_alignEnd="@+id/textField_sectoreAvgSpeed" />
+
+    <TextView
+        android:id="@+id/textField_sectoreAvgSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avg.Speed:"
+        android:layout_alignBaseline="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_toEndOf="@+id/textField_topSpeed"
+        android:layout_marginStart="77dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avg.Speed:"
+        android:layout_below="@+id/userName"
+        android:layout_toEndOf="@+id/userName" />
+
+    <TextView
+        android:id="@+id/textField_lap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lap"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textField_LapTime"
+        android:layout_marginStart="13dp" />
+
+    <TextView
+        android:id="@+id/textField_sector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textField_sectoreAvgSpeed"
+        android:layout_marginStart="17dp"
+        android:text="Sector" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textField_LapTime"
+        android:layout_marginStart="13dp"
+        android:text="Lap" />
+
+    <TextView
+        android:id="@+id/text_kmh_sectorTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_kmh_sectorAvg"
+        android:layout_toEndOf="@+id/textField_sectoreAvgSpeed"
+        android:text="0.0 km/h" />
+
+    <TextView
+        android:id="@+id/text_kmh_sectorAvg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textField_sectoreAvgSpeed"
+        android:layout_alignBottom="@+id/textField_sectoreAvgSpeed"
+        android:layout_toEndOf="@+id/textField_sectorTopSpeed"
+        android:text="0.0 km/h" />
+
+    <TextView
+        android:id="@+id/text_kmh_lapTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_kmh_lapTop"
+        android:layout_toEndOf="@+id/textField_LapTime"
+        android:text="00:00:00" />
+
+    <TextView
+        android:id="@+id/text_kmh_lapTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_kmh_lapAvg"
+        android:layout_toEndOf="@+id/textField_topSpeed"
+        android:text="0.0 km/h" />
+
+    <TextView
+        android:id="@+id/text_kmh_lapAvg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_toEndOf="@+id/textField_topSpeed"
+        android:text="0.0 km/h" />
+
+    <TextView
+        android:id="@+id/text_kmh_sectorTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_kmh_sectorTop"
+        android:layout_toEndOf="@+id/textField_sectoreAvgSpeed"
+        android:text="00:00:00" />
+
+</RelativeLayout>

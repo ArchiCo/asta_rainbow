@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.teamrainbow.rainbowtrack.UIActivity"
-    tools:showIn="@layout/activity_ui">
+    tools:showIn="@layout/content_ui">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -59,7 +59,7 @@
         android:layout_alignEnd="@+id/textField_sectoreAvgSpeed" />
 
     <TextView
-        android:id="@+id/textField_sectoreAvgSpeed"
+        android:id="@+id/textField_sectorAvgSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Avg.Speed:"
@@ -151,5 +151,24 @@
         android:layout_below="@+id/text_kmh_sectorTop"
         android:layout_toEndOf="@+id/textField_sectoreAvgSpeed"
         android:text="00:00:00" />
+
+    <Button
+        android:id="@+id/button_changeSector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button_avg"
+        android:layout_alignBottom="@+id/button_avg"
+        android:layout_alignStart="@+id/textField_sector"
+        android:layout_marginStart="18dp"
+        android:text="test2" />
+
+    <Button
+        android:id="@+id/button_avg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textField_lap"
+        android:layout_below="@+id/textField_LapTime"
+        android:layout_marginTop="82dp"
+        android:text="test1" />
 
 </RelativeLayout>

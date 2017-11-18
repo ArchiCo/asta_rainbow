@@ -2,6 +2,8 @@ package com.example.teamrainbow.rainbowtrack;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,10 +32,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
     private WebSocketClient mWebSocketClient;
 
+    public List<CarData> carOBD= new ArrayList<CarData>();
     ArrayList<String> numberlist = new ArrayList<>();
     private String TAG = MainActivity.class.getSimpleName();
     private ListView lv;
@@ -49,10 +54,6 @@ public class MainActivity extends AppCompatActivity {
         client = new OkHttpClient();
         start();
 
-        contactList = new ArrayList<>();
-        lv = (ListView) findViewById(R.id.list);
-
-        new GetContacts().execute();
         Button goToUI = (Button) findViewById(R.id.button_goToUI);
         goToUI.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,85 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class GetContacts extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(MainActivity.this,"Json Data is downloading",Toast.LENGTH_LONG).show();
 
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-
-                    // Getting JSON Array node
-                    JSONArray contacts = jsonObj.getJSONArray("contacts");
-
-                    // looping through All Contacts
-                    for (int i = 0; i < contacts.length(); i++) {
-                        JSONObject c = contacts.getJSONObject(i);
-                        String id = c.getString("id");
-                        String name = c.getString("name");
-                        String email = c.getString("email");
-                        String address = c.getString("address");
-                        String gender = c.getString("gender");
-
-                        // Phone node is JSON Object
-                        JSONObject phone = c.getJSONObject("phone");
-                        String mobile = phone.getString("mobile");
-                        String home = phone.getString("home");
-                        String office = phone.getString("office");
-
-                        // tmp hash map for single contact
-                        HashMap<String, String> contact = new HashMap<>();
-
-                        // adding each child node to HashMap key => value
-                        contact.put("id", id);
-                        contact.put("name", name);
-                        contact.put("email", email);
-                        contact.put("mobile", mobile);
-
-                        // adding contact to contact list
-                        contactList.add(contact);
-                    }
-                } catch (final JSONException e) {
-                    Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                }
-
-            } else {
-                Log.e(TAG, "Couldn't get json from server.");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            //Logcat here
-        }
-    }
 
     private TextView output;
     private OkHttpClient client;
@@ -152,13 +75,47 @@ public class MainActivity extends AppCompatActivity {
         private static final int NORMAL_CLOSURE_STATUS = 1000;
 
         @Override
-        public void onOpen(WebSocket webSocket, Response response) {
-            webSocket.send("pos");
+        public void onOpen(final WebSocket webSocket, Response response) {
+           // webSocket.send("pos");
+            Looper.prepare();
+            final Handler handler = new Handler();
+            final Thread thread = new Thread() {
+
+                public void run() {
+                    try {
+                        ArrayList<String> str = new ArrayList<String>();
+                        str.add("0;0;437836807000;577770780;127816615;19217;3;1593;0");
+                        str.add("0;0;437836807200;577770779;127816614;19216;6;1593;0");
+                        str.add("0;0;437836807400;577770779;127816614;19216;6;1593;0");
+                        str.add("0;0;437836807600;577770778;127816613;19217;4;1593;0");
+                        str.add("0;0;437836807800;577770777;127816613;19217;3;1593;0");
+                        str.add("0;0;20;50;100;150;200;800;1000");
+                        while(true) {
+                            for (int i = 0; i < str.size(); i++) {
+                                webSocket.send(str.get(i));
+
+                                sleep(1000);
+                                if (i == str.size()-1) {
+                                    i = 0;
+                                }
+                                handler.post(this);
+
+                            }
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            thread.start();
         }
 
-        @Override
+      @Override
         public void onMessage(WebSocket webSocket, String text) {
-            output("Receiving : " + text);
+            //output("Receiving : " + text);
+            carOBD.add(new CarData(text));
+          output(carOBD.get(carOBD.size()-1).debugString());
         }
 
         @Override
@@ -192,5 +149,9 @@ public class MainActivity extends AppCompatActivity {
                 output.setText(output.getText().toString() + "\n\n" + txt);
             }
         });
+    }
+
+    public CarData returnLastOBD() {
+        return carOBD.get(carOBD.size()-1);
     }
 }

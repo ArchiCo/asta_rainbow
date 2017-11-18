@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         goToUI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, UIActivity_UI.class);
+                Intent intent = new Intent(MainActivity.this, UIActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });

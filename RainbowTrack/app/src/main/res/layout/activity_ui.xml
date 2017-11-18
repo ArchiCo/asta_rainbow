@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.teamrainbow.rainbowtrack.UIActivity_UI">
+    tools:context="com.example.teamrainbow.rainbowtrack.UIActivity">
 
 
     <ImageView
@@ -68,7 +68,7 @@
         android:id="@+id/textView_avgSector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="27dp"
         android:text="Avg.Speed:"
         android:layout_below="@+id/textView_sector"
         android:layout_toEndOf="@+id/number_lapAvg" />
@@ -77,9 +77,9 @@
         android:id="@+id/textView_sector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Sector"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView_avgSector"
-        android:text="Sector" />
+        android:layout_alignStart="@+id/textView_avgSector" />
 
     <TextView
         android:id="@+id/textView_lapTime"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_sector"
         android:layout_toEndOf="@+id/textView_avgLap"
-        android:text="0.0 km/h" />
+        android:text="0.0 km/h  " />
 
     <TextView
         android:id="@+id/number_lapTop"
@@ -117,9 +117,9 @@
         android:id="@+id/number_sectorAvg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
+        android:layout_alignTop="@+id/textView_avgSector"
         android:layout_toEndOf="@+id/textView_avgSector"
-        android:text="0.0 km/h" />
+        android:text="0.0 km/h  " />
 
     <TextView
         android:id="@+id/number_sectorTop"
@@ -136,4 +136,22 @@
         android:layout_alignStart="@+id/number_sectorTop"
         android:layout_below="@+id/textView_topSpeedSector"
         android:text="00:00:00" />
+
+    <Button
+        android:id="@+id/button_test1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView_lapTime"
+        android:layout_below="@+id/textView_lapTime"
+        android:layout_marginTop="121dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button_test2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button_test1"
+        android:layout_alignEnd="@+id/number_sectorTime"
+        android:layout_marginEnd="16dp"
+        android:text="Button" />
 </RelativeLayout>

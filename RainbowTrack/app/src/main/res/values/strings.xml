@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_ui">UI</string>
     <string name="title_activity_uinew">UIActivity_new</string>
+    <string name="connected" />
+    <string name="disconnected" />
 </resources>

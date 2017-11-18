@@ -1,0 +1,27 @@
+{
+  "engine": {
+    "rpm": 900,
+    "ignition": "on",
+    "runtime": 520,
+    "ecu_voltage": 14,
+    "throttle_position": 20,
+    "mil": {
+      "status": "off",
+      "distance_with_mil": 0,
+      "time_with_mil": 0
+    },
+    "intake": {
+      "air_temp": 2,
+      "air_flow_rate": 17
+    }
+  },
+  "fuel_system": {
+    "fuel_consumption_avg": 19.7
+  },
+  "cooling": {
+    "coolant_temp": 71
+  },
+  "instrument": {
+    "vehicle_speed": 21
+  }
+}
